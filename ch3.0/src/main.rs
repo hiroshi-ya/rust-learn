@@ -114,5 +114,8 @@ use std::io::{self, Write};
 // tuple and array
 fn main() {
     let tup: (i32, f64, char) = (233, 9.9, '');
-    println!("Trying to print a tuple: {tup}");
+    let tup0 = tup.0; // necessary, because a tuple can contain different data types
+    let tup1 = tup.1; // so the compiler cannot perform type inference
+    let tup2 = tup.2;
+    println!("Trying to print a tuple: ({tup0}, {tup1}, {tup2})");
 }
