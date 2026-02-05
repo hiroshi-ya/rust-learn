@@ -121,6 +121,46 @@ fn tuple() {
     println!("Trying to print a tuple: ({tup0}, {tup1}, {tup2})");
 }
 
+// array
+fn array() {
+    // all elements in an array must share a same type
+    let arr0 = [1, 2, 3, 4, 5]; // [i32, 5]
+    let arr1 = ['a', 'b', 'c']; // [char, 3]
+    let arr2 = [8.0, 1.9, 10.0]; // [f64, 3]
+    // [9, 9.0] is invalid
+    println!("The array is {arr1:?}"); // the ":?" is necessary for printing arrays
+    // or use {var_name:#?} to print elements line by line
+
+    let arr3: [i32; 5] = [6, 7, 8, 9, 10]; // we can explicitly declare the length of the array
+    println!("A declared array with declared size: {arr3:?}");
+
+    let arr4 = ['c'; 4]; // equivalent to `let arr4 = ['c', 'c', 'c', 'c'];`
+    println!("Fill the declared array with same value: {arr4:?}");
+
+    println!(
+        "Trying to access the element. First: {}, last: {}",
+        arr0[0],
+        arr0[arr0.len() - 1]
+    ); // `{arr[0]}` is invalid in format string
+}
+
+fn array_access() {
+    let a = [1, 2, 3, 4, 5, 6];
+    print!("Enter an index: ");
+    io::stdout().flush().unwrap();
+
+    // read an input
+    let mut input = String::new();
+    io::stdin()
+        .read_line(&mut input)
+        .expect("failed to readline");
+
+    let index: usize = input.trim().parse().expect("not a number");
+
+    let element = a[index];
+    println!("The value of a[{index}] is {element}");
+}
+
 fn main() {
-    tuple();
+    array_access();
 }
